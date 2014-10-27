@@ -10,5 +10,6 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-  ws
+  ws,
+	"org.thymeleaf" % "thymeleaf" % "2.1.3.RELEASE"
 )
