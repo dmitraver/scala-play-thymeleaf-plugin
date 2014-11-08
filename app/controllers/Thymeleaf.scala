@@ -1,16 +1,17 @@
 package controllers
 
 import java.io.StringWriter
+import java.util
 import java.util.Locale
 
 import l18n.PlayMessageResolver
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
+import play.api.i18n.Lang
+import play.api.mvc.{Flash, Session}
 import play.twirl.api.Html
 import template.{PlayResourceResolver, PlayTemplateResolver}
-import play.api.i18n.Lang
-
-import scala.collection.JavaConversions._
+import wrappers._
 
 object Thymeleaf {
 
@@ -25,11 +26,17 @@ object Thymeleaf {
 	templateEngine.setMessageResolver(messageResolver)
 
 
-	def render(templateName: String, objects: Map[String, Object] = Map())(implicit language: Lang): Html = {
+	def render(templateName: String, objects: Map[String, Object] = Map())
+						(implicit language: Lang, flash: Flash = Flash(), session: Session = Session()): Html = {
 		messageResolver.setLang(language)
+
+		val map = new util.HashMap[String, Object]()
+		objects.foreach(o => map.put(o._1, o._2))
+		map.put("session", SessionMap(session))
+		map.put("flash", FlashMap(flash))
+
+		val context = new Context(language.toLocale, map)
 		val stringWriter = new StringWriter
-		val map: java.util.Map[String, Object] = objects
-		val context = new Context(new Locale("en"), map)
 		templateEngine.process(templateName, context, stringWriter)
 		Html(stringWriter.toString)
 	}
