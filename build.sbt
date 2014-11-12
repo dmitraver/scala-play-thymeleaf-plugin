@@ -11,5 +11,6 @@ libraryDependencies ++= Seq(
   anorm,
   cache,
   ws,
-	"org.thymeleaf" % "thymeleaf" % "2.1.3.RELEASE"
+	"org.thymeleaf" % "thymeleaf" % "2.1.3.RELEASE",
+	"javax.servlet" % "javax.servlet-api" % "3.1.0"
 )

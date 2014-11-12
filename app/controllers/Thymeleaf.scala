@@ -2,10 +2,11 @@ package controllers
 
 import java.io.StringWriter
 
+import context.PlayContext
 import dialect.PlayDialect
 import l18n.PlayMessageResolver
 import org.thymeleaf.TemplateEngine
-import org.thymeleaf.context.{Context, VariablesMap}
+import org.thymeleaf.context.VariablesMap
 import play.Play
 import play.api.i18n.Lang
 import play.api.mvc.{Flash, Session}
@@ -34,7 +35,7 @@ object Thymeleaf {
 		map.put("session", SessionMap(session))
 		map.put("flash", FlashMap(flash))
 
-		val context = new Context(language.toLocale, map)
+		val context = new PlayContext(language.toLocale, map)
 		val stringWriter = new StringWriter
 		templateEngine.process(templateName, context, stringWriter)
 		Html(stringWriter.toString)
