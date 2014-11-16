@@ -18,17 +18,19 @@ object Thymeleaf {
 
 	private val templateEngine = new TemplateEngine
 	private val resourceResolver = new PlayResourceResolver
+	private val messageResolver = new PlayMessageResolver
 	private val templateResolver = new PlayTemplateResolver(resourceResolver)
 
 	templateResolver.setCacheable(Play.application.configuration.
 					getBoolean("thymeleaf.cache.enabled", true))
 	templateEngine.setTemplateResolver(templateResolver)
 	templateEngine.addDialect(new PlayDialect)
+	templateEngine.setMessageResolver(messageResolver)
 
 
 	def render(templateName: String, objects: Map[String, AnyRef] = Map())
 						(implicit language: Lang, flash: Flash = Flash(), session: Session = Session()): Html = {
-		templateEngine.setMessageResolver(new PlayMessageResolver(language))
+		messageResolver.setLanguage(language)
 
 		val map = new VariablesMap[String, AnyRef]()
 		objects.foreach(o => map.put(o._1, o._2))
