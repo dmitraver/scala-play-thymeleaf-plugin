@@ -1,7 +1,6 @@
 package controllers
 
 import java.io.StringWriter
-
 import context.PlayContext
 import dialect.PlayDialect
 import l18n.PlayMessageResolver
@@ -13,6 +12,7 @@ import play.api.mvc.{Flash, Session}
 import play.twirl.api.Html
 import template.{PlayResourceResolver, PlayTemplateResolver}
 import wrappers._
+import scala.collection.JavaConversions._
 
 object Thymeleaf {
 
@@ -28,21 +28,28 @@ object Thymeleaf {
 	templateEngine.setMessageResolver(messageResolver)
 
 
-	def render(templateName: String, objects: Map[String, AnyRef] = Map())
+	def render(templateName: String, temlateObjects: Map[String, AnyRef] = Map())
 						(implicit language: Lang, flash: Flash = Flash(), session: Session = Session()): Html = {
 		messageResolver.setLanguage(language)
 
-		val map = new VariablesMap[String, AnyRef]()
-		objects.foreach(o => map.put(o._1, o._2))
-		map.put("session", SessionMap(session))
-		map.put("flash", FlashMap(flash))
+		val templateVariables = new VariablesMap[String, AnyRef]()
+		temlateObjects.foreach{obj =>
+			val templateObject = obj._2 match {
+				case c: Seq[_] => seqAsJavaList(c)
+				case c: Map[_, _] => mapAsJavaMap(c)
+				case c: Set[_] => setAsJavaSet(c)
+				case _ => obj._2
+			}
 
-		val context = new PlayContext(language.toLocale, map)
+			templateVariables.put(obj._1, obj)}
+
+		templateVariables.put("session", SessionMap(session))
+		templateVariables.put("flash", FlashMap(flash))
+
+		val context = new PlayContext(language.toLocale, templateVariables)
 		val stringWriter = new StringWriter
 		templateEngine.process(templateName, context, stringWriter)
 		Html(stringWriter.toString)
 	}
-
-
 }
 
