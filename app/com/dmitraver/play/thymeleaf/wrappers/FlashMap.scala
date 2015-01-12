@@ -1,4 +1,4 @@
-package wrappers
+package com.dmitraver.play.thymeleaf.wrappers
 
 import play.api.mvc.Flash
 

@@ -1,8 +1,8 @@
-package context.mock
+package com.dmitraver.play.thymeleaf.context.mock
 
 import java.util
 import javax.servlet.ServletContext
-import javax.servlet.http.{HttpSessionContext, HttpSession}
+import javax.servlet.http.{HttpSession, HttpSessionContext}
 
 class MockHttpSession extends HttpSession {
 

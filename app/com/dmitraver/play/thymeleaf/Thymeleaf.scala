@@ -1,17 +1,18 @@
-package controllers
+package com.dmitraver.play.thymeleaf
 
 import java.io.StringWriter
-import context.PlayContext
-import dialect.PlayDialect
-import l18n.PlayMessageResolver
+
+import com.dmitraver.play.thymeleaf.context.PlayContext
+import com.dmitraver.play.thymeleaf.l18n.PlayMessageResolver
+import com.dmitraver.play.thymeleaf.template.{PlayResourceResolver, PlayTemplateResolver}
+import com.dmitraver.play.thymeleaf.wrappers._
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.VariablesMap
 import play.Play
 import play.api.i18n.Lang
 import play.api.mvc.{Flash, Session}
 import play.twirl.api.Html
-import template.{PlayResourceResolver, PlayTemplateResolver}
-import wrappers._
+
 import scala.collection.JavaConversions._
 
 object Thymeleaf {
@@ -48,7 +49,6 @@ object Thymeleaf {
 					getString(THYMELEAF_TEMPLATE_SUFFIX_PROPERTY_KEY, THYMELEAF_TEMPLATE_SUFFIX_PROPERTY_DEFAULT_VALUE))
 
 	templateEngine.setTemplateResolver(templateResolver)
-	templateEngine.addDialect(new PlayDialect)
 	templateEngine.setMessageResolver(messageResolver)
 
 

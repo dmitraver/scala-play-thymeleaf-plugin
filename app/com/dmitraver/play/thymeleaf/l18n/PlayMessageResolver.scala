@@ -1,4 +1,4 @@
-package l18n
+package com.dmitraver.play.thymeleaf.l18n
 
 import org.thymeleaf.Arguments
 import org.thymeleaf.messageresolver.{MessageResolution, IMessageResolver}

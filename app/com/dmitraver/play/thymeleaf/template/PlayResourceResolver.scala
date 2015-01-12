@@ -1,4 +1,4 @@
-package template
+package com.dmitraver.play.thymeleaf.template
 
 import java.io._
 

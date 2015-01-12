@@ -1,10 +1,10 @@
-package context
+package com.dmitraver.play.thymeleaf.context
 
 import java.util.Locale
 import javax.servlet.ServletContext
 import javax.servlet.http.{HttpServletRequest, HttpServletResponse, HttpSession}
 
-import context.mock.{MockHttpServletRequest, MockHttpSession}
+import com.dmitraver.play.thymeleaf.context.mock.{MockHttpServletRequest, MockHttpSession}
 import org.thymeleaf.context.{Context, IWebContext, VariablesMap}
 
 class PlayContext(locale: Locale, variables: VariablesMap[String, AnyRef]) extends Context(locale, variables) with IWebContext {

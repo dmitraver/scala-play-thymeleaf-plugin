@@ -1,4 +1,4 @@
-package utils
+package com.dmitraver.play.thymeleaf.utils
 
 import play.api.data.Form
 import java.util

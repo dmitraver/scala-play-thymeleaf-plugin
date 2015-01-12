@@ -1,4 +1,4 @@
-package context.mock
+package com.dmitraver.play.thymeleaf.context.mock
 
 import java.io.BufferedReader
 import java.security.Principal
