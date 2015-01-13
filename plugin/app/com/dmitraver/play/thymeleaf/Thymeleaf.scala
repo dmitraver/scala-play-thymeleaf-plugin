@@ -18,7 +18,7 @@ import scala.collection.JavaConversions._
 object Thymeleaf {
 
 	private val THYMELEAF_CACHE_ENABLED_PROPERTY_KEY = "thymeleaf.cache.enabled"
-	private val THYMELEAF_CACHE_ENABLED_PROPERTY_DEFAULT_VALUE = true
+	private val THYMELEAF_CACHE_ENABLED_PROPERTY_DEFAULT_VALUE = false
 
 	private val THYMELEAF_CACHE_TTL_IN_MILLIS_PROPERTY_KEY = "thymeleaf.cache.ttlms"
 	private val THYMELEAF_CACHE_TTL_IN_MILLIS_PROPERTY_DEFAULT_VALUE = null
@@ -27,7 +27,7 @@ object Thymeleaf {
 	private val THYMELEAF_TEMPLATE_MODE_PROPERTY_DEFAULT_VALUE = "XHTML"
 
 	private val THYMELEAF_TEMPLATE_PREFIX_PROPERTY_KEY = "thymeleaf.template.prefix"
-	private val THYMELEAF_TEMPLATE_PREFIX_PROPERTY_DEFAULT_VALUE = "public"
+	private val THYMELEAF_TEMPLATE_PREFIX_PROPERTY_DEFAULT_VALUE = "public/"
 
 	private val THYMELEAF_TEMPLATE_SUFFIX_PROPERTY_KEY = "thymeleaf.template.suffix"
 	private val THYMELEAF_TEMPLATE_SUFFIX_PROPERTY_DEFAULT_VALUE = ".html"
