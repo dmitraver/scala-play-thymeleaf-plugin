@@ -1,5 +1,7 @@
 package controllers
 
+import java.util.Calendar
+
 import com.dmitraver.play.thymeleaf.Thymeleaf
 import play.api._
 import play.api.mvc._
@@ -7,7 +9,7 @@ import play.api.mvc._
 object Application extends Controller {
 
   def index = Action { implicit request =>
-    Ok(Thymeleaf.render("index"))
+    Ok(Thymeleaf.render("home", Map("today" -> Calendar.getInstance()))).withSession(request.session + ("user", "John Apricot"))
   }
 
 }
