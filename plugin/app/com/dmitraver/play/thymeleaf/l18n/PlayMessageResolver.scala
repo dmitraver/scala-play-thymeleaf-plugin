@@ -17,7 +17,7 @@ class PlayMessageResolver extends IMessageResolver {
 	override def getName: String = MESSAGE_RESOLVER_NAME
 
 	override def resolveMessage(arguments: Arguments, key: String, messageParameters: Array[AnyRef]): MessageResolution = {
-		new MessageResolution(Messages(key))
+		new MessageResolution(Messages(key, messageParameters: _*))
 	}
 
 	override def initialize(): Unit = {}
