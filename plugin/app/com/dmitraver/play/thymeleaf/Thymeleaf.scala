@@ -3,6 +3,7 @@ package com.dmitraver.play.thymeleaf
 import java.io.StringWriter
 
 import com.dmitraver.play.thymeleaf.context.PlayContext
+import com.dmitraver.play.thymeleaf.dialect.PlayDialect
 import com.dmitraver.play.thymeleaf.l18n.PlayMessageResolver
 import com.dmitraver.play.thymeleaf.template.{PlayResourceResolver, PlayTemplateResolver}
 import com.dmitraver.play.thymeleaf.wrappers._
@@ -50,6 +51,7 @@ object Thymeleaf {
 
 	templateEngine.setTemplateResolver(templateResolver)
 	templateEngine.setMessageResolver(messageResolver)
+	templateEngine.addDialect(new PlayDialect)
 
 
 	def render(templateName: String, temlateObjects: Map[String, AnyRef] = Map())
