@@ -13,6 +13,8 @@ import org.thymeleaf.expression.ExpressionEvaluatorObjects
 import org.thymeleaf.standard.expression._
 import org.thymeleaf.util.{ClassLoaderUtils, EvaluationUtil}
 
+import scala.collection.JavaConversions._
+
 class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEvaluator {
 
 	val OGNL_CACHE_PREFIX = "{ognl}"
@@ -41,7 +43,6 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 				PlayOgnlVariableExpressionEvaluator.logger.trace("[THYMELEAF][{}] OGNL expression: evaluating expression \"{}\" on target", TemplateEngine.threadIndex(), expression)
 			}*/
 
-
 			var expressionTree: AnyRef = null
 			var cache: ICache[String, AnyRef] = null
 
@@ -62,8 +63,7 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 				}
 			}
 
-
-			val contextVariables: java.util.Map[String, AnyRef] = processingContext.getExpressionObjects
+			var contextVariables: java.util.Map[String, AnyRef] = processingContext.getExpressionObjects
 
 			val additionalContextVariables: java.util.Map[String, AnyRef] = computeAdditionalContextVariables(processingContext)
 			if (additionalContextVariables != null) {
@@ -75,11 +75,18 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 
 			setVariableRestrictions(expContext, evaluationRoot, contextVariables)
 
+
 			val context: OgnlContext = new OgnlContext(contextVariables)
 			//context.setClassResolver(this.classResolver);
 			context.setTypeConverter(new OgnlTypeConverter)
 
-			val result: AnyRef = Ognl.getValue(expressionTree, context, evaluationRoot)
+			var result: AnyRef = Ognl.getValue(expressionTree, context, evaluationRoot)
+			result  = result match {
+				case c: Seq[_] => seqAsJavaList(c)
+				case c: Map[_, _] => mapAsJavaMap(c)
+				case c: Set[_] => setAsJavaSet(c)
+				case _ => result
+			}
 
 			if (!expContext.getPerformTypeConversion) {
 				return result

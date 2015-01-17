@@ -14,8 +14,6 @@ import play.api.i18n.Lang
 import play.api.mvc.{Flash, Session}
 import play.twirl.api.Html
 
-import scala.collection.JavaConversions._
-
 object Thymeleaf {
 
 	private val THYMELEAF_CACHE_ENABLED_PROPERTY_KEY = "thymeleaf.cache.enabled"
@@ -53,21 +51,12 @@ object Thymeleaf {
 	templateEngine.setMessageResolver(messageResolver)
 	templateEngine.addDialect(new PlayDialect)
 
-
-	def render(templateName: String, temlateObjects: Map[String, AnyRef] = Map())
+	def render(templateName: String, templateObjects: Map[String, AnyRef] = Map())
 						(implicit language: Lang, flash: Flash = Flash(), session: Session = Session()): Html = {
 		messageResolver.setLanguage(language)
 
 		val templateVariables = new VariablesMap[String, AnyRef]()
-		temlateObjects.foreach{obj =>
-			val templateObject = obj._2 match {
-				case c: Seq[_] => seqAsJavaList(c)
-				case c: Map[_, _] => mapAsJavaMap(c)
-				case c: Set[_] => setAsJavaSet(c)
-				case _ => obj._2
-			}
-
-			templateVariables.put(obj._1, templateObject)}
+		templateObjects.foreach(obj => templateVariables.put(obj._1, obj._2))
 
 		templateVariables.put("session", SessionMap(session))
 		templateVariables.put("flash", FlashMap(flash))
