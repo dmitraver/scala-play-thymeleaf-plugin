@@ -10,4 +10,12 @@ object ProductController extends Controller {
 		val products = Product.findAll()
 		Ok(Thymeleaf.render("product/list", Map("prods" -> products)))
 	}
+	
+	def commentsList(prodId: Int) = Action { implicit request => 
+		val product = Product.findById(prodId)
+		product match {
+			case Some(x) => Ok(Thymeleaf.render("product/comments", Map("prod" -> x)))
+			case None => Ok("No such product")
+		}
+	}
 }

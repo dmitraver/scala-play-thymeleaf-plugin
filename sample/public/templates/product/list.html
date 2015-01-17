@@ -6,7 +6,7 @@
   <head>
     <title>Good Thymes Virtual Grocery</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../../css/gtvg.css" th:href="@{/assets/stylesheets/gtvg.css}" />
   </head>
 
   <body>
@@ -29,8 +29,8 @@
           <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
           <td>
             <span th:text="${#lists.size(prod.comments)}">2</span> comment/s
-            <a href="comments.html" 
-               th:href="@{/product/comments(prodId=${prod.id})}" 
+            <a href="comments.html"
+               th:href="@{/product/comments(prodId=${prod.id})}"
                th:unless="${#lists.isEmpty(prod.comments)}">view</a>
           </td>
         </tr>

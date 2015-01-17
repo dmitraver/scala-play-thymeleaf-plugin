@@ -1,6 +1,12 @@
 package model
 
-case class Product(id: Int, name: String, price: Double, inStock: Boolean, comments: List[Comment] = List[Comment]())
+case class Product(id: Int, name: String, price: Double, inStock: Boolean, comments: List[Comment] = List[Comment]()) {
+	def getId = id
+	def getName = name
+	def getPrice = price
+	def isInStock = inStock
+	def getComments = comments
+}
 
 object Product {
 
@@ -12,7 +18,7 @@ object Product {
 	                           4 -> Product(4, "Old Cheddar", 18.75, inStock = true,
 														 	List(Comment(3, "Very tasty! I'd definitely buy it again!"))))
 
-	def getById(id: Int): Option[Product] = {
+	def findById(id: Int): Option[Product] = {
 		products.get(id)
 	}
 
