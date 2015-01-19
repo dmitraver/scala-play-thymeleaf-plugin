@@ -6,6 +6,8 @@
 GET        /                        controllers.Application.index
 GET        /product/list            controllers.ProductController.productList
 GET        /product/comments        controllers.ProductController.commentsList(prodId: Int)
+GET        /order/list              controllers.OrderController.ordersList()
+GET        /order/details           controllers.OrderController.details(orderId: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file            controllers.Assets.at(path="/public", file)

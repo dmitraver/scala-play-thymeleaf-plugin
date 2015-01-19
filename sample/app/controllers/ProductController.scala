@@ -15,7 +15,7 @@ object ProductController extends Controller {
 		val product = Product.findById(prodId)
 		product match {
 			case Some(x) => Ok(Thymeleaf.render("product/comments", Map("prod" -> x)))
-			case None => Ok("No such product")
+			case None => Ok("Product with id = " + prodId + " is not found")
 		}
 	}
 }
