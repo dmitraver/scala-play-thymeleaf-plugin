@@ -4,7 +4,8 @@ import java.util.Collections
 import javassist.{ClassPool, CtClass, CtMethod, LoaderClassPath}
 
 import com.dmitraver.play.thymeleaf.converter.OgnlTypeConverter
-import ognl.{Ognl, OgnlContext, OgnlException}
+import com.dmitraver.play.thymeleaf.ognl.OgnlObjectPropertyAccessor
+import ognl._
 import org.thymeleaf.Configuration
 import org.thymeleaf.cache.{ICache, ICacheManager}
 import org.thymeleaf.context.{IContext, IContextVariableRestriction, IProcessingContext, VariablesMap}
@@ -75,12 +76,13 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 
 			setVariableRestrictions(expContext, evaluationRoot, contextVariables)
 
-
 			val context: OgnlContext = new OgnlContext(contextVariables)
 			//context.setClassResolver(this.classResolver);
 			context.setTypeConverter(new OgnlTypeConverter)
+			OgnlRuntime.setPropertyAccessor(classOf[Object], new OgnlObjectPropertyAccessor)
 
 			var result: AnyRef = Ognl.getValue(expressionTree, context, evaluationRoot)
+
 			result  = result match {
 				case c: Seq[_] => seqAsJavaList(c)
 				case c: Map[_, _] => mapAsJavaMap(c)
