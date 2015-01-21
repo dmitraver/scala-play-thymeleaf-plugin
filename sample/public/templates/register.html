@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" th:href="@{/assets/stylesheets/gtvg.css}" />
+  </head>
+
+  <body>
+  
+    <p>Register please!</p>
+  
+    <form action="userprofile.html" th:action="@{/userprofile}" method="post">
+      <fieldset>
+        <br>First name: </br>
+          <input type="text" name="firstName" />
+        <br>Last name:</br>
+          <input type="text" name="lastName" />
+        <br>Age: </br>
+          <input type="text" name="age" />
+        <p>
+            <input type="submit" value="Register me!" th:value="#{register.submit}" />
+        </p>
+      </fieldset>
+    </form>
+  
+    <p>
+      <a href="home.html" th:href="@{/}">Return to home</a>
+    </p>
+  
+  </body>
+  
+</html>
+

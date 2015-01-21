@@ -1,3 +1,6 @@
 home.welcome=Welcome to our <b>fantastic</b> grocery store, {0}!
 logo=Good Thymes Virtual Grocery logo
 date.format=MMMM dd'','' yyyy
+true=yes
+false=no
+register.submit=Register
