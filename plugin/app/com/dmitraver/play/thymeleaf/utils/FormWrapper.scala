@@ -24,6 +24,13 @@ class FormWrapper[T] (form: Form[T]) {
 		form.globalErrors.foreach(formError => errors add formError.message)
 		errors
 	}
+
+	def value(field: String) = {
+		form(field).value match {
+			case Some(value) => value
+			case None => ""
+		}
+	}
 }
 
 object FormWrapper {
