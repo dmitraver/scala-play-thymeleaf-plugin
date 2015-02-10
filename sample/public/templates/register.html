@@ -16,11 +16,14 @@
     <form action="userprofile.html" th:action="@{/userprofile}" method="post">
       <fieldset>
         <br>First name: </br>
-          <input type="text" name="firstName" />
+          <input type="text" name="firstName" th:value="${userForm.value('firstName')}" th:class="${userForm.hasErrors('firstName')}? form_error" />
+          <b th:if="${userForm.hasErrors('firstName')}" th:text="#{${userForm.errors('firstName')[0]}}">Incorrect first name</b>
         <br>Last name:</br>
-          <input type="text" name="lastName" />
+          <input type="text" name="lastName" th:value="${userForm.value('lastName')}" th:class="${userForm.hasErrors('lastName')}? form_error" />
+          <b th:if="${userForm.hasErrors('lastName')}" th:text="#{${userForm.errors('lastName')[0]}}">Incorrect last name</b>
         <br>Age: </br>
-          <input type="text" name="age" />
+          <input type="text" name="age" th:value="${userForm.value('age')}" th:class="${userForm.hasErrors('age')}? form_error"/>
+          <b th:if="${userForm.hasErrors('age')}" th:text="#{${userForm.errors('age')[0]}}">Incorrect age</b>
         <p>
             <input type="submit" value="Register me!" th:value="#{register.submit}" />
         </p>

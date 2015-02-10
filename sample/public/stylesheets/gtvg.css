@@ -75,3 +75,8 @@ a:hover {
   color: #99cc33;
   border-bottom: 1px solid #99cc33;
 }
+
+.form_error
+{
+    border:1px solid red;
+}
