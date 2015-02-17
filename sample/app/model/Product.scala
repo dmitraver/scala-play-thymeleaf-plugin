@@ -1,12 +1,6 @@
 package model
 
-case class Product(id: Int, name: String, price: Double, inStock: Boolean, comments: List[Comment] = List[Comment]()) {
-	def getId = id
-	def getName = name
-	def getPrice = price
-	def isInStock = inStock
-	def getComments = comments
-}
+case class Product(id: Int, name: String, price: Double, inStock: Boolean, comments: List[Comment] = List[Comment]())
 
 object Product {
 

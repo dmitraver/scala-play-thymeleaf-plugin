@@ -4,12 +4,7 @@ import java.util.Calendar
 
 import utils.CalendarUtil
 
-case class Order(id: Int, date: Calendar, customer: Customer, orderLines: Set[OrderLine] = Set[OrderLine]()) {
-	def getId = id
-	def getDate = date
-	def getCustomer = customer
-	def getOrderLines = orderLines
-}
+case class Order(id: Int, date: Calendar, customer: Customer, orderLines: Set[OrderLine] = Set[OrderLine]())
 
 object Order {
 

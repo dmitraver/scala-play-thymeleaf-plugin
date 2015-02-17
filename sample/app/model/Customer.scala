@@ -4,11 +4,7 @@ import java.util.Calendar
 
 import utils.CalendarUtil
 
-case class Customer(id: Int, name: String, customerSince: Calendar) {
-	def getId = id
-	def getName = name
-	def getCustomerSince = customerSince
-}
+case class Customer(id: Int, name: String, customerSince: Calendar)
 
 object Customer {
 
