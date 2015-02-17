@@ -1,13 +1,54 @@
 package com.dmitraver.play.thymeleaf.ognl
 
+import java.beans.IntrospectionException
 import java.util
 
-import ognl.{ObjectPropertyAccessor, OgnlContext}
+import ognl.{OgnlException, OgnlRuntime, ObjectPropertyAccessor, OgnlContext}
 
+import scala.annotation.target
 import scala.collection.JavaConversions._
 
 class OgnlObjectPropertyAccessor extends ObjectPropertyAccessor {
-	override def getPossibleProperty(context: util.Map[_, _], target: scala.Any, name: String): AnyRef = super.getPossibleProperty(context, target, name)
+	override def getPossibleProperty(context: util.Map[_, _], target: scala.Any, name: String): AnyRef = {
+		if(isCaseClass(target)) {
+			getCaseClassFieldValueByName(target, name) match {
+				case Some(x) => return x.asInstanceOf[AnyRef]
+				case None =>
+			}
+		}
+
+		var result: Object = null
+		val ognlContext: OgnlContext = context.asInstanceOf[OgnlContext]
+
+		try {
+			result = OgnlRuntime.getMethodValue( ognlContext, target, name, true )
+			if (result == OgnlRuntime.NotFound ) {
+				result = OgnlRuntime.getFieldValue( ognlContext, target, name, true )
+			}
+		}
+		catch {
+			case ex: IntrospectionException => throw new OgnlException( name, ex )
+			case ex: OgnlException => throw ex
+			case ex: Exception => throw new OgnlException( name, ex )
+		}
+
+		result
+	}
+
+	def getCaseClassFieldValueByName(targetClass: Any, fieldName: String): Option[Any] = {
+		val productInstance = targetClass.asInstanceOf[Product]
+		val fieldsNameToValueMap = productInstance.getClass.getDeclaredFields.map( _.getName )
+						.zip(productInstance.productIterator.to ).toMap
+		fieldsNameToValueMap.get(fieldName)
+	}
+
+	def isCaseClass(instance: Any) = {
+		import reflect.runtime.universe._
+		val typeMirror = runtimeMirror(instance.getClass.getClassLoader)
+		val instanceMirror = typeMirror.reflect(instance)
+		val symbol = instanceMirror.symbol
+		symbol.isCaseClass
+	}
 
 	override def setPossibleProperty(context: util.Map[_, _], target: scala.Any, name: String, value: scala.Any): AnyRef = super.setPossibleProperty(context, target, name, value)
 
