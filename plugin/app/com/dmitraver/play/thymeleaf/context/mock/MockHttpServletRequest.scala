@@ -9,6 +9,10 @@ import javax.servlet.http._
 
 import play.Play
 
+/**
+ * Mock HttpServletRequest. This class is used by [[org.thymeleaf.standard.expression.LinkExpression]]
+ * in order to process link urls.
+ */
 class MockHttpServletRequest extends HttpServletRequest {
 
 	override def getAuthType: String = ???

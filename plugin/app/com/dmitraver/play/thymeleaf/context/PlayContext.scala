@@ -7,6 +7,13 @@ import javax.servlet.http.{HttpServletRequest, HttpServletResponse, HttpSession}
 import com.dmitraver.play.thymeleaf.context.mock.{MockHttpServletRequest, MockHttpSession}
 import org.thymeleaf.context.{Context, IWebContext, VariablesMap}
 
+/**
+ * Implementation of the [[org.thymeleaf.context.IWebContext]] for Play Framework.
+ * It is required to extend [[org.thymeleaf.context.IWebContext]] in order for
+ * link urls to work.
+ * @param locale locale used for externalized messages
+ * @param variables variables to be used inside a template
+ */
 class PlayContext(locale: Locale, variables: VariablesMap[String, AnyRef]) extends Context(locale, variables) with IWebContext {
 
 	val servletRequest = new MockHttpServletRequest

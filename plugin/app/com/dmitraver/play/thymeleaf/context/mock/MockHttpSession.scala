@@ -4,6 +4,10 @@ import java.util
 import javax.servlet.ServletContext
 import javax.servlet.http.{HttpSession, HttpSessionContext}
 
+/**
+ * Mock HttpSession. This class is used by [[org.thymeleaf.standard.expression.LinkExpression]]
+ * in order to process link urls.
+ */
 class MockHttpSession extends HttpSession {
 
 	override def getCreationTime: Long = ???

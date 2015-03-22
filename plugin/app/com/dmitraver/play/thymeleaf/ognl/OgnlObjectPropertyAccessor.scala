@@ -5,10 +5,16 @@ import java.util
 
 import ognl.{OgnlException, OgnlRuntime, ObjectPropertyAccessor, OgnlContext}
 
-import scala.annotation.target
 import scala.collection.JavaConversions._
 
+/**
+ * This class extends standard OGNL [[ognl.ObjectPropertyAccessor]] class
+ * to support conversion from Scala collections to Java counterparts when
+ * accessing object properties. It also allows OGNL to access Scala case
+ * classes without specifying getter methods for their properties.
+ */
 class OgnlObjectPropertyAccessor extends ObjectPropertyAccessor {
+
 	override def getPossibleProperty(context: util.Map[_, _], target: scala.Any, name: String): AnyRef = {
 		if(isCaseClass(target)) {
 			getCaseClassFieldValueByName(target, name) match {
@@ -60,6 +66,12 @@ class OgnlObjectPropertyAccessor extends ObjectPropertyAccessor {
 
 	override def hasSetProperty(context: util.Map[_, _], target: scala.Any, oname: scala.Any): Boolean = super.hasSetProperty(context, target, oname)
 
+	/**
+	 * Overrides standard OGNL getProperty method to support conversion
+	 * from Scala collections to Java collections. It is very important because
+	 * OGNL is a Java library and in order to make it work correctly the Scala
+	 * collections must be converted to Java collections counterparts.
+	 */
 	override def getProperty(context: util.Map[_, _], target: scala.Any, oname: scala.Any): AnyRef = {
 		val result = super.getProperty(context, target, oname)
 		result match {

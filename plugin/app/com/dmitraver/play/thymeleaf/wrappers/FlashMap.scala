@@ -2,6 +2,10 @@ package com.dmitraver.play.thymeleaf.wrappers
 
 import play.api.mvc.Flash
 
+/**
+ * Flash wrapper as a java Map object. It simplifies working with Flash
+ * inside a template.
+ */
 class FlashMap(flash: Flash) extends java.util.HashMap[String, String] {
 
 	override def put(key: String, value: String): String = {

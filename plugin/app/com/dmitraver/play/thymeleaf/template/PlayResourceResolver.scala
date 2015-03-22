@@ -6,6 +6,10 @@ import org.thymeleaf.TemplateProcessingParameters
 import org.thymeleaf.resourceresolver.IResourceResolver
 import play.{Logger, Play}
 
+/**
+ * Implementation of [[org.thymeleaf.resourceresolver.IResourceResolver]]
+ * that resolves resources according to Play Framework rules
+ */
 class PlayResourceResolver extends IResourceResolver {
 
 	private val PLAY_RESOURCE_RESOLVER_NAME = "PLAY_RESOURCE_RESOLVER"

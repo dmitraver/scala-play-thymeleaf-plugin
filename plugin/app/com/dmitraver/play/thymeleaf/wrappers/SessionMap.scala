@@ -2,6 +2,10 @@ package com.dmitraver.play.thymeleaf.wrappers
 
 import play.api.mvc.Session
 
+/**
+ * Session wrapper as a java Map object. It simplifies working with Session
+ * inside a template.
+ */
 class SessionMap(session: Session) extends java.util.HashMap[String, String] {
 
 	override def put(key: String, value: String): String = {

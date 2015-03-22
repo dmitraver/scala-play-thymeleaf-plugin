@@ -14,6 +14,9 @@ import play.api.i18n.Lang
 import play.api.mvc.{Flash, Session}
 import play.twirl.api.Html
 
+/**
+ * Main class to use Thymeleaf as a template engine
+ */
 object Thymeleaf {
 
 	private val THYMELEAF_CACHE_ENABLED_PROPERTY_KEY = "thymeleaf.cache.enabled"
@@ -51,6 +54,18 @@ object Thymeleaf {
 	templateEngine.setMessageResolver(messageResolver)
 	templateEngine.addDialect(new PlayDialect)
 
+	/**
+	 * Renders a template using specified parameters.
+	 * @param templateName name of the template to render. By default module expects templates to be
+	 *                     stored in public/ directory. You can specify another path to your templates by
+	 *                     overriding thymeleaf.template.prefix configuration property in application.conf
+	 * @param templateObjects map of named objects(variables) that will be available to use from expressions
+	 *                        in the executed template
+	 * @param language language to be used for message externalization (internationalization)
+	 * @param flash flash scope that can be accessed in templates as "flash" named variable
+	 * @param session session scope that can be accessed in templates as "session" named variable
+	 * @return rendered template as [[play.twirl.api.Html]]
+	 */
 	def render(templateName: String, templateObjects: Map[String, AnyRef] = Map())
 						(implicit language: Lang, flash: Flash = Flash(), session: Session = Session()): Html = {
 		messageResolver.setLanguage(language)

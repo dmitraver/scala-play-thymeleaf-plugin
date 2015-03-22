@@ -16,6 +16,11 @@ import org.thymeleaf.util.{ClassLoaderUtils, EvaluationUtil}
 
 import scala.collection.JavaConversions._
 
+/**
+ * The implementation of this class is copied from Thymeleaf, but changed to
+ * support custom ognl property accessor and conversion of Scala collections
+ * to Java collections counterparts where required.
+ */
 class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEvaluator {
 
 	val OGNL_CACHE_PREFIX = "{ognl}"
@@ -40,9 +45,6 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 	override def evaluate(configuration: Configuration, processingContext: IProcessingContext, expression: String, expContext: StandardExpressionExecutionContext, useSelectionAsRoot: Boolean): AnyRef = {
 
 		try {
-			/*if (PlayOgnlVariableExpressionEvaluator.logger.isTraceEnabled) {
-				PlayOgnlVariableExpressionEvaluator.logger.trace("[THYMELEAF][{}] OGNL expression: evaluating expression \"{}\" on target", TemplateEngine.threadIndex(), expression)
-			}*/
 
 			var expressionTree: AnyRef = null
 			var cache: ICache[String, AnyRef] = null
@@ -77,7 +79,6 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 			setVariableRestrictions(expContext, evaluationRoot, contextVariables)
 
 			val context: OgnlContext = new OgnlContext(contextVariables)
-			//context.setClassResolver(this.classResolver);
 			context.setTypeConverter(new OgnlTypeConverter)
 			OgnlRuntime.setPropertyAccessor(classOf[Object], new OgnlObjectPropertyAccessor)
 
@@ -128,8 +129,6 @@ class PlayOgnlVariableExpressionEvaluator extends IStandardVariableExpressionEva
 
 object PlayOgnlVariableExpressionEvaluator {
 	var booleanFixApplied = false
-
-	//val logger: Logger = LoggerFactory.getLogger(classOf[OgnlVariableExpressionEvaluator])
 
 	def fixBooleanValue(value: Any): Boolean =  {
 		// This specifies how evaluation to boolean should be done *INSIDE* OGNL expressions, so the conversion

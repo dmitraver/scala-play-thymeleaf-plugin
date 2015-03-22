@@ -4,6 +4,9 @@ import org.thymeleaf.Arguments
 import org.thymeleaf.messageresolver.{MessageResolution, IMessageResolver}
 import play.api.i18n.{Messages, Lang}
 
+/**
+ * Class used for the resolution of externalized (internationalized) messages
+ */
 class PlayMessageResolver extends IMessageResolver {
 
 	private val MESSAGE_RESOLVER_NAME = "PLAY_MESSAGE_RESOLVER"
