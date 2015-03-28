@@ -1,7 +1,7 @@
 package controllers
 
-import com.dmitraver.play.thymeleaf.Thymeleaf
-import com.dmitraver.play.thymeleaf.utils.FormWrapper
+import com.github.dmitraver.play.thymeleaf.Thymeleaf
+import com.github.dmitraver.play.thymeleaf.utils.FormWrapper
 import model.User
 import play.api.data._
 import play.api.data.Forms._

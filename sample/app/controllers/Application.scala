@@ -2,7 +2,7 @@ package controllers
 
 import java.util.Calendar
 
-import com.dmitraver.play.thymeleaf.Thymeleaf
+import com.github.dmitraver.play.thymeleaf.Thymeleaf
 import play.api.mvc._
 
 object Application extends Controller {

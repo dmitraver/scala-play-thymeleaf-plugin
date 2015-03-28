@@ -1,6 +1,6 @@
 package controllers
 
-import com.dmitraver.play.thymeleaf.Thymeleaf
+import com.github.dmitraver.play.thymeleaf.Thymeleaf
 import model.Product
 import play.api.mvc.{Action, Controller}
 
