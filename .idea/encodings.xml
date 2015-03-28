@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/sample/public/images/gtvglogo.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/stylesheets/gtvg.css" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/templates/footer.html" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/templates/home.html" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/templates/order" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/templates/product" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/templates/register.html" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/sample/public/templates/userprofile.html" charset="ISO-8859-1" />
+  </component>
+</project>
+
