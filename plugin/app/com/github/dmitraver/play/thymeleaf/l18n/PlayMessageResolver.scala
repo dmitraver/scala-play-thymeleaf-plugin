@@ -11,7 +11,7 @@ class PlayMessageResolver extends IMessageResolver {
 
 	private val MESSAGE_RESOLVER_NAME = "PLAY_MESSAGE_RESOLVER"
 	private val MESSAGE_RESOLVER_ORDER = 0
-	private var language: Lang = Lang("en")
+	implicit private var language: Lang = Lang("en")
 
 	def setLanguage(language: Lang) = {
 		this.language = language
@@ -20,7 +20,8 @@ class PlayMessageResolver extends IMessageResolver {
 	override def getName: String = MESSAGE_RESOLVER_NAME
 
 	override def resolveMessage(arguments: Arguments, key: String, messageParameters: Array[AnyRef]): MessageResolution = {
-		new MessageResolution(Messages(key, messageParameters: _*))
+		val message = new MessageResolution(Messages(key, messageParameters: _*))
+		message
 	}
 
 	override def initialize(): Unit = {}
