@@ -16,3 +16,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.0.0")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.0.0")
+
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "0.2.2")
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-pgp" % "0.8.3")
