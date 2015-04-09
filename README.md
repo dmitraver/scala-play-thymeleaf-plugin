@@ -3,5 +3,11 @@ A module for Play Framework(Scala) to use [Thymleaf] (http://thymeleaf.org) temp
 
 Thymeleaf is an **XML / XHTML / HTML5** template engine that is suited for serving XHTML/HTML5 at the view layer of web applications. It is based on XML tags and attributes that define the execution of predefined logic on the DOM (Document Object Model), instead of explicitly writing that logic as code inside the template.
 
+##Installation
+To use this module add it as a dependency to your build file
+```
+"com.github.dmitraver" %% "play-thymeleaf-plugin" % "1.0"
+```
+
 ## Sample application
-To see this module in action check out the project under **sample** directory.
+To see this module in action check out the project and run it
