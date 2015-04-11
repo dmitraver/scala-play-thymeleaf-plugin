@@ -27,12 +27,12 @@ Enables Thymleaf caching capability for templates.
 Template cache ttl in milliseconds. If not set, entries would be cached until expelled by LRU.
 
 ### thymeleaf.template.mode=XHTML
-Defines type of templates that Thymeleaf can process
+Defines type of templates that Thymeleaf can process.
 
 ### thymeleaf.template.prefix=public/
-Defines a folder where you should place your template files
+Defines a folder where you should place your template files.
 
 ### thymeleaf.template.suffix=.html
-Defines template files extension
+Defines template files extension.
 
 ## Usage
