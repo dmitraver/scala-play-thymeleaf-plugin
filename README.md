@@ -35,4 +35,6 @@ Defines a folder where you should place your template files.
 ### thymeleaf.template.suffix=.html
 Defines template files extension.
 
+Please refer to Thymeleaf documentation about possible configuration values.
+
 ## Usage
