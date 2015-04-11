@@ -44,8 +44,8 @@ def render(templateName: String, templateObjects: Map[String, AnyRef] = Map())
 						(implicit language: Lang, flash: Flash = Flash(), session: Session = Session()): Html
 ```
 where 
- - templateName is a name of your template. By default module assumes that the templates are located under **public/** directory    of Play application which can be overriden by specifying **thymeleaf.template.prefix** property in **application.conf** file.
- - templateObjects are a Map of named objects that can be used inside template.
+ - **templateName** is a name of your template. By default module assumes that the templates are located under **public/** directory of Play application which can be overriden by specifying **thymeleaf.template.prefix** property in **application.conf** file.
+ - **templateObjects** are a Map of named objects that can be used inside template.
 
 This method also takes some implicit parameters which can be provided by specifying implicit request parameter in controller action method. For example:
 ```
