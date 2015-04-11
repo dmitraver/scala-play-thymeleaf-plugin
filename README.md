@@ -55,7 +55,7 @@ def ordersList() = Action { implicit request =>
 	}
 ```
 ### Forms
-You can use standard Play Framework **Form** object to map and validate your form data. However, there is a special form helper class **FormWrapper** which can simplify working with forms and provides some methods to get error messages inside your templates. It's advisable to always wrap your form into **FormWrapper** before passing them as a template objects. 
+You can use standard Play Framework **Form** object to map and validate your form data. However, there is a special form helper class **FormWrapper** which can simplify working with forms and provides some methods to get error messages inside your templates. It's advisable always to wrap your form into **FormWrapper** before passing them as a template objects. 
 Example:
 ```
 def register() = Action { implicit request =>
