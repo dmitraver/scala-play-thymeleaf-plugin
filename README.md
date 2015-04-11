@@ -18,7 +18,7 @@ sbt "project sample" run
 Sample represents a simple web application which is a remastered version of "The Good Thymes Virtual Grocery" - original web application created by Thymeleaf authors to show capabilites of template engine.
 
 ## Configuration
-Module allows to override some Thymeleaf configuration options. You can override default values by specifying them in **aplication.conf** file. The following configuration options with their defualt values are available:
+Module allows to override some Thymeleaf configuration options. You can override default values by specifying them in **application.conf** file. The following configuration options with their defualt values are available:
 
 ### thymeleaf.cache.enabled=false
 Enables Thymleaf caching capability for templates.
