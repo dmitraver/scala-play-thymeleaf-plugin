@@ -60,5 +60,5 @@ lazy val sample = (project in file("sample")).settings(
 		ws,
 		"org.thymeleaf" % "thymeleaf" % "2.1.3.RELEASE",
 		"javax.servlet" % "javax.servlet-api" % "3.1.0",
-  	"com.github.dmitraver" % "play-thymeleaf-plugin_2.10" % "1.0-SNAPSHOT"
+  	"com.github.dmitraver" % "play-thymeleaf-plugin_2.10" % "1.0"
 )).enablePlugins(PlayScala)
