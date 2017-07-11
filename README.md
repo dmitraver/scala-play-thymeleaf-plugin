@@ -3,7 +3,7 @@ A module for Play Framework(Scala) to use [Thymeleaf] (http://thymeleaf.org) tem
 
 Thymeleaf is an **XML / XHTML / HTML5** template engine that is suited for serving XHTML/HTML5 at the view layer of web applications. It is based on XML tags and attributes that define the execution of predefined logic on the DOM (Document Object Model), instead of explicitly writing that logic as code inside the template.
 
-##Installation
+## Installation
 To use this module add it as a dependency to your build file
 ```
 "com.github.dmitraver" %% "play-thymeleaf-plugin" % "1.0"
@@ -49,18 +49,21 @@ where
 
 This method also takes some implicit parameters which can be provided by specifying implicit request parameter in controller action method. For example:
 ```
-def ordersList() = Action { implicit request =>
-		val orders = Order.findAll()
-		Ok(Thymeleaf.render("order/list", Map("orders" -> orders)))
-	}
+def ordersList() = Action { 
+    implicit request =>
+        val orders = Order.findAll()
+	Ok(Thymeleaf.render("order/list", Map("orders" -> orders)))
+}
 ```
 ### Forms
 You can use standard Play Framework **Form** object to map and validate your form data. However, there is a special form helper class **FormWrapper** which can simplify working with forms and provides some methods to get error messages inside your templates. It's advisable always to wrap your form into **FormWrapper** before passing them as a template objects. 
 Example:
 ```
-def register() = Action { implicit request =>
-		Ok(Thymeleaf.render("register", Map("userForm" -> FormWrapper(registrationForm))))
-	}
+def register() = Action { 
+    implicit request =>
+        Ok(Thymeleaf.render("register", Map("userForm" -> FormWrapper(registrationForm))))
+}
 ```
+
 ### Accessing template objects
 Themeleaf uses OGNL(Object-Graph Navigation Language) as a standard template expression language. OGNL requires classes to have getter methods in order for them to be accessible inside templates. However, you can omit this requirement when using **case** classes which can be accessible without providing getter methods for them.
